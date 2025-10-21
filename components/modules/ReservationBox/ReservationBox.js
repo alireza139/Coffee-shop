@@ -6,14 +6,7 @@ function ReservationBox() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [person, setPerson] = useState("1");
-  const [newReservation, setNewReservation] = useState({
-    name: "",
-    email: "",
-    date: "",
-    time: "",
-    person: "",
-  });
-
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
