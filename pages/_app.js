@@ -1,5 +1,7 @@
 import Navbar from "@/components/modules/Navbar/Navbar";
 import Footer from "@/components/modules/Footer/Footer";
+import 'swiper/css';
+import 'swiper/css/pagination';
 import "@/styles/globals.css";
 
 import { config } from '@fortawesome/fontawesome-svg-core';

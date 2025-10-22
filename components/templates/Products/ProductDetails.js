@@ -5,7 +5,7 @@ config.autoAddCss = false;
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 
-const ProductsDetails = ({ data }) => {
+const ProductsDetails = ({ data = []}) => {
   return (
     <div
       className={`${styles.product_main}   align-items-center mb-5 text-decoration-none justify-content-center`}

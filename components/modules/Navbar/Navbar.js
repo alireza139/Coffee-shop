@@ -6,44 +6,38 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 
 function Navbar() {
-  const [search, setSearch] = useState("")
-  const route = useRouter()
+  const [search, setSearch] = useState("");
+  const router = useRouter();
 
-  // سرچ کردن از یوآر ال مرورگر
+  // ست کردن مقدار سرچ از query
   useEffect(() => {
-    setSearch(route.query.q)
-  }, [])
+    setSearch(router.query.q || "");
+  }, [router.query.q]);
 
   const searchHandler = () => {
     if (search.trim()) {
-      route.push(`search?q=${search}`)
+      router.push(`/search?q=${search}`);
     }
-  }
+  };
 
   const searchHandlerWithEnter = (event) => {
-    if (event.keyCode == 13) {
-      if (search.trim()) {
-        route.push(`search?q=${search}`)
-      }
+    if (event.keyCode === 13 && search.trim()) {
+      router.push(`/search?q=${search}`);
     }
-  }
+  };
+
+  // تابع برای چک کردن اکتیو بودن مسیر
+  const isActive = (path) => router.pathname === path;
 
   return (
-    <div class={`container-fluid p-0 ${styles.nav_bar}`}>
+    <div className={`container-fluid p-0 ${styles.nav_bar}`}>
       <nav
-        class={`${styles.navbar} ${styles.navbar_expand_lg} bg-none navbar-dark py-3`}
+        className={`${styles.navbar} ${styles.navbar_expand_lg} bg-none navbar-dark py-3`}
       >
-        <a href="index.html" class={`${styles.navbar_brand} px-lg-4 m-0`}>
+        <Link href="/" className={`${styles.navbar_brand} px-lg-4 m-0`}>
           <h1 className="m-0 display-4 text-uppercase text-white">Next-Coffee</h1>
-        </a>
-        <button
-          type="button"
-          class={`${styles.navbar_toggler}`}
-          data-toggle="collapse"
-          data-target="#navbarCollapse"
-        >
-          <span class={`${styles.navbar_toggler_icon}`}></span>
-        </button>
+        </Link>
+
         <div
           className="w-100 d-flex justify-content-center align-items-center position-relative my-3 my-md-0"
           style={{ maxWidth: "300px" }}
@@ -51,7 +45,7 @@ function Navbar() {
           <input
             type="text"
             value={search}
-            onChange={e => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
             onKeyDown={searchHandlerWithEnter}
             placeholder="Search..."
             style={{
@@ -73,56 +67,74 @@ function Navbar() {
             }}
           />
         </div>
+
         <div
-          class={`collapse ${styles.navbar_collapse} justify-content-between`}
+          className={`collapse ${styles.navbar_collapse} justify-content-between`}
           id="navbarCollapse"
         >
-          <div class={`${styles.navbar_nav} ml-auto p-4`}>
+          <div className={`${styles.navbar_nav} ml-auto p-4`}>
             <Link
               href="/"
-              class={`${styles.nav_link} ${styles.active_nav_link}`}>
+              className={`${styles.nav_link} ${
+                isActive("/") ? styles.active_nav_link : ""
+              }`}
+            >
               Home
             </Link>
 
             <Link
               href="/about"
-              class={`${styles.nav_link}`}>
+              className={`${styles.nav_link} ${
+                isActive("/about") ? styles.active_nav_link : ""
+              }`}
+            >
               About
             </Link>
+
             <Link
               href="/services"
-              class={`${styles.nav_link}`}>
+              className={`${styles.nav_link} ${
+                isActive("/services") ? styles.active_nav_link : ""
+              }`}
+            >
               Services
             </Link>
+
             <Link
               href="/menu"
-              class={`${styles.nav_link}`}>
+              className={`${styles.nav_link} ${
+                isActive("/menu") ? styles.active_nav_link : ""}`}
+            >
               Menu
             </Link>
-            <div class={`${styles.dropdown}`}>
+
+            <div className={`${styles.dropdown}`}>
               <a
                 href="#"
-                class={`${styles.nav_link} ${styles.dropdown_toggle}`}
+                className={`${styles.nav_link} ${styles.dropdown_toggle}`}
                 data-toggle="dropdown"
               >
                 Pages
               </a>
-              <div class={`${styles.dropdown_menu} ${styles.text_capitalize}`}>
+              <div className={`${styles.dropdown_menu} ${styles.text_capitalize}`}>
                 <Link
                   href="/reservation"
-                  class={`${styles.dropdown_item}`}>
+                  className={`${styles.dropdown_item} ${isActive("/reservation") ? styles.active_nav_link : ""}`}
+                >
                   Reservation
                 </Link>
                 <Link
                   href="/testimonial"
-                  class={`${styles.dropdown_item}`}>
+                  className={`${styles.dropdown_item} ${isActive("/testimonial") ? styles.active_nav_link : ""}`}
+                >
                   Testimonial
                 </Link>
               </div>
             </div>
+
             <Link
               href="/contact"
-              class={`${styles.nav_link}`}>
+              className={`${styles.nav_link} ${isActive("/contact") ? styles.active_nav_link : ""}`}>
               Contact
             </Link>
           </div>
