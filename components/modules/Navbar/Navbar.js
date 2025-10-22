@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/Navbar.module.css";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
 
 function Navbar() {
+  const [search, setSearch] = useState("")
+  const route = useRouter()
+
+  // سرچ کردن از یوآر ال مرورگر
+  useEffect(() => {
+    setSearch(route.query.q)
+  }, [])
+
+  const searchHandler = () => {
+    if (search.trim()) {
+      route.push(`search?q=${search}`)
+    }
+  }
+
+  const searchHandlerWithEnter = (event) => {
+    if (event.keyCode == 13) {
+      if (search.trim()) {
+        route.push(`search?q=${search}`)
+      }
+    }
+  }
+
   return (
     <div class={`container-fluid p-0 ${styles.nav_bar}`}>
       <nav
@@ -19,6 +44,35 @@ function Navbar() {
         >
           <span class={`${styles.navbar_toggler_icon}`}></span>
         </button>
+        <div
+          className="w-100 d-flex justify-content-center align-items-center position-relative my-3 my-md-0"
+          style={{ maxWidth: "300px" }}
+        >
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            onKeyDown={searchHandlerWithEnter}
+            placeholder="Search..."
+            style={{
+              width: "100%",
+              padding: "10px 40px 10px 12px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+              outline: "none",
+            }}
+          />
+          <FontAwesomeIcon
+            icon={faSearch}
+            onClick={searchHandler}
+            style={{
+              position: "absolute",
+              right: "12px",
+              color: "#666",
+              cursor: "pointer",
+            }}
+          />
+        </div>
         <div
           class={`collapse ${styles.navbar_collapse} justify-content-between`}
           id="navbarCollapse"

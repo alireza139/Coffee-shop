@@ -6,7 +6,7 @@ function ReservationBox() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [person, setPerson] = useState("1");
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -18,18 +18,16 @@ function ReservationBox() {
       person: Number(person),
     };
 
-    try {
-      const response = await fetch("http://localhost:4000/reservations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reservation),
-      });
 
-      if (!response.ok) throw new Error("خطا در ارسال داده");
+    const response = await fetch("http://localhost:4000/reservations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reservation),
+    });
 
-      const data = await response.json();
+    if (response.status === 201) {
       alert("Reservation Successfuly")
 
       // reset form
@@ -38,8 +36,6 @@ function ReservationBox() {
       setDate("");
       setTime("");
       setPerson("1");
-    } catch (error) {
-      console.error("Rservation Failed", error);
     }
   };
 
@@ -115,7 +111,7 @@ function ReservationBox() {
                   </div>
                   <div className="form-group">
                     <select
-                    value={person}
+                      value={person}
                       onChange={(e) => setPerson(e.target.value)}
                       className="custom-select bg-transparent border-primary px-4"
                       style={{ height: "49px" }}

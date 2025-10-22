@@ -3,7 +3,7 @@ import React from "react";
 import About from "@/components/templates/Index/About";
 import Services from "@/components/templates/Index/Services";
 import Offer from "@/components/templates/Index/Offer";
-import Menu from "@/components/templates/Index/Menu";
+import Pricing from "@/components/modules/Menu/Pricing";
 import ReservationBox from "@/components/modules/ReservationBox/ReservationBox";
 import Testimonials from "@/components/modules/Testimonials/Testimonials";
 
@@ -14,7 +14,7 @@ function Index({ data }) {
       <About />
       <Services services={data.services} />
       <Offer></Offer>
-      <Menu data={data.menu}></Menu>
+      <Pricing data={data.menu} length={2}/>
       <ReservationBox/>
       <Testimonials data={data.comments} count={3}/>
     </>

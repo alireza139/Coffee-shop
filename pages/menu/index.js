@@ -1,12 +1,12 @@
 import React from "react";
 import PageHeader from "@/components/modules/PageHeader/PageHeader";
-import Pricing from "@/components/templates/Menu/Pricing";
+import Pricing from "@/components/modules/Menu/Pricing";
 
 function Menu({ menu }) {
   return (
     <>
       <PageHeader route="Menu" />
-      <Pricing data={menu} />
+      <Pricing data={menu} length={menu.length}/>
     </>
   );
 }

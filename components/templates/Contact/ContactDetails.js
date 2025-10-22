@@ -11,26 +11,21 @@ function ContactDetails() {
 
     const messageObject = { name, email, subject, message };
 
-    try {
-      const response = await fetch("http://localhost:4000/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(messageObject),
-      });
+    const response = await fetch("http://localhost:4000/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(messageObject),
+    });
 
-      if (!response.ok) throw new Error("خطا در ارسال پیام");
-
+    if (response.status) {
       alert("Message sent successfully ✅");
 
       setName("");
       setEmail("");
       setSubject("");
       setMessage("");
-    } catch (error) {
-      console.error("Message send failed ❌", error);
-      alert("Failed to send message. Please try again.");
     }
   };
 

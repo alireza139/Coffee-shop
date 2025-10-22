@@ -6,7 +6,7 @@
       "price": 5,
       "desc": "Sit lorem ipsum et diam elitr est dolor sed duo guberg sea et et lorem dolor",
       "score": 5,
-      "off": 0,
+      "off": 10,
       "type": "cold",
       "img": "/images/menu-1.jpg"
     },
@@ -16,7 +16,7 @@
       "price": 4,
       "desc": "Sit lorem ipsum et diam elitr est dolor sed duo guberg sea et et lorem dolor",
       "score": 4.4,
-      "off": 0,
+      "off": 30,
       "type": "hot",
       "img": "/images/menu-2.jpg"
     },
@@ -55,7 +55,7 @@
       "title": "Banana Milk",
       "price": 12,
       "desc": "Sit lorem ipsum et diam elitr est dolor sed duo guberg sea et et lorem dolor",
-      "score": 4.9,
+      "score": 3.9,
       "off": 0,
       "type": "cold",
       "img": "/images/menu-6.jpeg"
@@ -152,6 +152,13 @@
       "email": "aliireza.hosseinii11@gmail.com",
       "subject": "مشکل در تغییر دامنه اصلی",
       "message": "tmtkitgmigigi5"
+    },
+    {
+      "id": "0abd",
+      "name": "raha",
+      "email": "raha41@gmail.com",
+      "subject": "ajaj",
+      "message": "kmdedeweiweiwenciweci"
     }
   ],
   "reserve": [
@@ -190,6 +197,14 @@
       "email": "aliireza.hosseinii11@gmail.com",
       "date": "2025-10-25",
       "time": "12:45",
+      "person": 2
+    },
+    {
+      "id": "f2b2",
+      "name": "saeed",
+      "email": "kdkd2525@gmail.com",
+      "date": "2025-10-11",
+      "time": "03:16",
       "person": 2
     }
   ]
